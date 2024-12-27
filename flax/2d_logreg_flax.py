@@ -1,7 +1,5 @@
-from functools import partial
 from typing import Iterator
 
-import jax
 import jax.numpy as jnp
 from flax import nnx
 import optax
@@ -85,7 +83,9 @@ def train(
     epochs: int = 1000, batch_size: int = 1, learning_rate: float = 0.01
 ) -> dict[str, list[float]]:
     rngs = nnx.Rngs(0)
-    X, y = make_blobs(n_samples=1000, n_features=2, centers=2, cluster_std=2, random_state=42)
+    X, y = make_blobs(
+        n_samples=1000, n_features=2, centers=2, cluster_std=2, random_state=42
+    )
     X = jnp.array(X).astype(jnp.float32)
     y = jnp.array(y).astype(jnp.int32)[:, None]
     X_train, X_test, y_train, y_test = train_test_split(
