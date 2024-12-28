@@ -1,3 +1,5 @@
+import logging
+import os
 from dataclasses import dataclass, field
 from typing import Any, Iterator, cast
 
@@ -10,6 +12,10 @@ from datasets import load_dataset  # type: ignore
 from jaxtyping import Array, Float, Int, jaxtyped
 from tqdm import tqdm  # type: ignore
 from flax import nnx
+
+logger = logging.getLogger(__name__)
+log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
+logging.basicConfig(level=log_level)
 
 
 def typed(fn):
@@ -310,6 +316,7 @@ if __name__ == "__main__":
     config = VITConfig()
     model = VITClassifier(config=config, num_classes=10)
     optimizer = nnx.Optimizer(model, optax.adam(learning_rate=1e-3))
+    logger.info("Creating dataset...")
     X_train, y_train, X_val, y_val, num_classes = prepare_dataset()
-
+    logger.info("Dataset created")
     train(model, optimizer, X_train, y_train, X_val, y_val, epochs=100)
