@@ -675,6 +675,15 @@ wheels = [
 ]
 
 [[package]]
+name = "isort"
+version = "5.13.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/87/f9/c1eb8635a24e87ade2efce21e3ce8cd6b8630bb685ddc9cdaca1349b2eb5/isort-5.13.2.tar.gz", hash = "sha256:48fdfcb9face5d58a4f6dde2e72a1fb8dcaf8ab26f95ab49fab84c2ddefb0109", size = 175303 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d1/b3/8def84f539e7d2289a02f0524b944b15d7c75dab7628bedf1c4f0992029c/isort-5.13.2-py3-none-any.whl", hash = "sha256:8ca5e72a8d85860d5a3fa69b8745237f2939afe12dbf656afbcb47fe72d947a6", size = 92310 },
+]
+
+[[package]]
 name = "jax"
 version = "0.4.38"
 source = { registry = "https://pypi.org/simple" }
@@ -700,6 +709,7 @@ dependencies = [
     { name = "equinox" },
     { name = "flax" },
     { name = "ipykernel" },
+    { name = "isort" },
     { name = "jax" },
     { name = "jaxtyping" },
     { name = "lovely-jax" },
@@ -718,6 +728,7 @@ requires-dist = [
     { name = "equinox", specifier = ">=0.11.11" },
     { name = "flax", specifier = ">=0.10.2" },
     { name = "ipykernel", specifier = ">=6.29.5" },
+    { name = "isort", specifier = ">=5.13.2" },
     { name = "jax", specifier = ">=0.4.38" },
     { name = "jaxtyping", specifier = ">=0.2.36" },
     { name = "lovely-jax", specifier = ">=0.1.3" },

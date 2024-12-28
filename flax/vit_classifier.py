@@ -3,16 +3,13 @@ from typing import Any, Iterator, cast
 
 import jax
 import jax.numpy as jnp
+import lovely_jax  # type: ignore
 import optax  # type: ignore
 from beartype import beartype
 from datasets import load_dataset  # type: ignore
-from flax import nnx
 from jaxtyping import Array, Float, Int, jaxtyped
 from tqdm import tqdm  # type: ignore
-
-import lovely_jax  # type: ignore
-
-lovely_jax.monkey_patch()
+from flax import nnx
 
 
 def typed(fn):
@@ -308,8 +305,11 @@ def train(
 
 
 if __name__ == "__main__":
+    lovely_jax.monkey_patch()
+
     config = VITConfig()
     model = VITClassifier(config=config, num_classes=10)
     optimizer = nnx.Optimizer(model, optax.adam(learning_rate=1e-3))
     X_train, y_train, X_val, y_val, num_classes = prepare_dataset()
+
     train(model, optimizer, X_train, y_train, X_val, y_val, epochs=100)
