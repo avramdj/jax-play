@@ -223,7 +223,6 @@ def prepare_dataset(train_size: int | None = None, val_size: int | None = None):
     y_val = jax.nn.one_hot(y_val, num_classes=10).astype(jnp.int32)
 
     idx2cls = {i: cls for i, cls in enumerate(dataset["train"].features["label"].names)}
-    cls2idx = {cls: i for i, cls in idx2cls.items()}
     num_classes = len(idx2cls)
 
     X_train = (X_train / 255.0).astype(jnp.float32)
